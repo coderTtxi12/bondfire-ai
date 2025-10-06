@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../viewmodel/onboarding_viewmodel.dart';
+import '../../questionnaire/views/questionnaire_view.dart';
 import 'page_indicators.dart';
 import 'onboarding_page_content.dart';
 
@@ -84,7 +85,16 @@ class _OnboardingContentWidgetState extends State<OnboardingContentWidget> {
                     child: ElevatedButton(
                       onPressed: onboardingData.isLoading
                           ? null
-                          : () => viewModel.onContinuePressed(),
+                          : () async {
+                              await viewModel.onContinuePressed();
+                              if (onboardingData.isLastPage && !onboardingData.isLoading) {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                    builder: (context) => const QuestionnaireView(),
+                                  ),
+                                );
+                              }
+                            },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.buttonPrimary,
                         foregroundColor: AppColors.textPrimary,

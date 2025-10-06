@@ -48,7 +48,7 @@ class OnboardingViewModel extends ChangeNotifier {
   // Continue button action
   Future<void> onContinuePressed() async {
     if (isLastPage) {
-      // Navigate to sign-in
+      // Navigate to questionnaire
       _setLoading(true);
       await Future.delayed(const Duration(milliseconds: 500));
       _setLoading(false);
