@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
+import '../../onboarding/views/onboarding_view.dart';
 
 class WelcomeContentWidget extends StatefulWidget {
   const WelcomeContentWidget({super.key});
@@ -194,8 +195,14 @@ class _WelcomeContentWidgetState extends State<WelcomeContentWidget> {
     // Simular navegación o lógica de continuación
     await Future.delayed(const Duration(milliseconds: 500));
     
-    // Aquí iría la navegación a la siguiente pantalla
-    // context.go('/next-screen');
+    // Navegar a la pantalla de onboarding
+    if (mounted) {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const OnboardingView(),
+        ),
+      );
+    }
     
     setState(() {
       _isLoading = false;
