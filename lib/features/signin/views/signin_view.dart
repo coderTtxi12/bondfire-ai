@@ -5,6 +5,7 @@ import '../../../core/theme/app_colors.dart';
 import '../viewmodel/signin_viewmodel.dart';
 import '../widgets/signin_content_widget.dart';
 import '../../welcome/widgets/curved_clipper.dart';
+import '../../questionnaire/views/questionnaire_view.dart';
 
 class SignInView extends StatefulWidget {
   const SignInView({super.key});
@@ -22,7 +23,17 @@ class _SignInViewState extends State<SignInView> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => SignInViewModel(),
+      create: (context) {
+        final viewModel = SignInViewModel();
+        viewModel.setOnSignInSuccess(() {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => const QuestionnaireView(),
+            ),
+          );
+        });
+        return viewModel;
+      },
       child: Scaffold(
         body: Container(
           color: AppColors.backgroundDark,

@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../viewmodel/onboarding_viewmodel.dart';
-import '../../questionnaire/views/questionnaire_view.dart';
+import '../../signin/views/signin_view.dart';
 import 'page_indicators.dart';
 import 'onboarding_page_content.dart';
 
@@ -90,7 +90,7 @@ class _OnboardingContentWidgetState extends State<OnboardingContentWidget> {
                               if (onboardingData.isLastPage && !onboardingData.isLoading) {
                                 Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
-                                    builder: (context) => const QuestionnaireView(),
+                                    builder: (context) => SignInView(),
                                   ),
                                 );
                               }

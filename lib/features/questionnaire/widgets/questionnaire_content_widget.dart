@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../viewmodel/questionnaire_viewmodel.dart';
+import '../../home/views/home_view.dart';
 import 'progress_indicator_widget.dart';
 import 'question_widget.dart';
 import 'questionnaire_navigation_widget.dart';
@@ -146,8 +147,12 @@ class _QuestionnaireContentWidgetState extends State<QuestionnaireContentWidget>
               height: 56,
               child: ElevatedButton(
                 onPressed: () {
-                  // Navigate to main app or next screen
-                  Navigator.of(context).pop();
+                  // Navigate to home page
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => const HomeView(),
+                    ),
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.buttonPrimary,

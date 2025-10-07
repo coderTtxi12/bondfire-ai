@@ -3,10 +3,16 @@ import '../models/signin_model.dart';
 
 class SignInViewModel extends ChangeNotifier {
   SignInModel _signInData = SignInModel.defaultData;
+  VoidCallback? _onSignInSuccess;
 
   // Getters
   SignInModel get signInData => _signInData;
   bool get isLoading => _signInData.isGoogleSignInLoading;
+
+  // Set navigation callback
+  void setOnSignInSuccess(VoidCallback callback) {
+    _onSignInSuccess = callback;
+  }
 
 
   // Google Sign In
@@ -31,8 +37,8 @@ class SignInViewModel extends ChangeNotifier {
       );
       notifyListeners();
       
-      // Aquí iría la navegación después del login exitoso
-      // context.go('/home');
+      // Navigate to questionnaire after successful sign in
+      _onSignInSuccess?.call();
       
     } catch (e) {
       _signInData = _signInData.copyWith(
